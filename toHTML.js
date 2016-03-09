@@ -107,7 +107,7 @@ AttrsToHTML.prototype._initModifiersArray = function (AttributedText) {
     i;
   for (i = 0; i < modifiersArray.length; i++) {
     modifiersArray[i].type = this.TYPES_STRUCT[modifiersArray[i]._type];
-    modifiersArray[i].id = i
+    modifiersArray[i].id = i;
   }
   return modifiersArray;
 };
@@ -124,9 +124,8 @@ AttrsToHTML.prototype._getModifierStackIndex = function (modifier) {
 
 
 AttrsToHTML.prototype._removeModifierFromStack = function (bookmark, index) {
-  var i, l;
-  l = this.tagLevelStack.length
-  for (i = 0; i < l; i++) {
+  var i;
+  for (i = 0; i < this.tagLevelStack.length; i++) {
     var activeModifier = this.tagLevelStack[i];
     if (activeModifier) {
       if (bookmark.modifier.id === activeModifier.id || activeModifier.end == index) {
@@ -142,19 +141,14 @@ AttrsToHTML.prototype.escapeHTMLchar = function (char) {
     switch (char) {
     case '<':
       return '&lt;';
-      break;
     case '>':
       return '&gt;';
-      break;
     case '&':
       return '&amp;';
-      break;
     case '"':
       return '&quot;';
-      break;
     case "'":
       return '&#39;';
-      break;
     default:
       return char;
     }
@@ -162,8 +156,7 @@ AttrsToHTML.prototype.escapeHTMLchar = function (char) {
     return '';
   }
 
-}
-
+};
 
 module.exports = function (textObject, options) {
 

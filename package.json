@@ -8,7 +8,7 @@
   "scripts": {
     "test": "mocha",
     "testdbg": "mocha --debug-brk",
-    "lint": "jshint **.js **/*.js",
+    "lint": "node_modules/jshint/bin/jshint **.js **/*.js",
     "coverage": "istanbul cover node_modules/.bin/_mocha"
   },
   "repository": {
