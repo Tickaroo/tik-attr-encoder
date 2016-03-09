@@ -1,0 +1,36 @@
+{
+  "name": "tik-attributed-text",
+  "version": "1.0.0",
+  "description": "Encodes and decodes TikApi::v5 text attributes to HTML",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "lint": "jshint **.js **/*.js",
+    "coverage": "istanbul cover node_modules/.bin/_mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tickaroo/tik-attributed-text.git"
+  },
+  "keywords": [
+    "tikapi",
+    "attirbutes",
+    "html"
+  ],
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "codecov.io": "^0.1.6",
+    "jsdom": "^8.1.0",
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5",
+    "should": "^8.2.2"
+  },
+  "author": "Anton Pawlik <anton.pawlik@gmail.com> (http://antpaw.org)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tickaroo/tik-attributed-text/issues"
+  },
+  "homepage": "https://github.com/Tickaroo/tik-attributed-text#readme"
+}
