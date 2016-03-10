@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var toHTML = require('../toHTML.js');
+var toHTML = require('../to-html.js');
 
 describe('toHTML', function () {
 

@@ -1,5 +1,5 @@
 // var expect = require('chai').expect;
-// var toAttrs = require('../toAttrs.js');
+// var toAttrs = require('../to-attrs.js');
 // var jsdom = require('jsdom');
 //
 // describe('tik-attributed-text toAttrs', function () {
