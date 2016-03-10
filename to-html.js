@@ -13,7 +13,7 @@ function AttrsToHTML(AttributedText) {
     'Tik::ApiModel::Text::RefSpan': 'a'
   };
 
-  this.inputString = AttributedText.text;
+  this.inputString = AttributedText.title;
   this.outputString = '';
   this.modifiersArray = this._initModifiersArray(AttributedText);
   this.bookmarks = [];

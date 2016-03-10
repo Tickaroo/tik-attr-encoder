@@ -7,7 +7,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: '',
+        title: '',
         attrs: []
       })
     ).to.equal('');
@@ -17,7 +17,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: []
       })
     ).to.equal('abcdefghijklmnopqrstuvwxyz0123456789');
@@ -27,7 +27,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::HeadlineSpan',
           start: 0,
@@ -41,7 +41,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: "'abcd<efgh>ijk&lmno\"pqr\"stuvwxyz0123456789'",
+        title: "'abcd<efgh>ijk&lmno\"pqr\"stuvwxyz0123456789'",
         attrs: [{
           _type: 'Tik::ApiModel::Text::HeadlineSpan',
           start: 0,
@@ -55,7 +55,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::BoldSpan',
           start: 0,
@@ -69,7 +69,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::ItalicSpan',
           start: 0,
@@ -83,7 +83,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::StrikethroughSpan',
           start: 0,
@@ -97,7 +97,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::UnderlineSpan',
           start: 0,
@@ -111,7 +111,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::RefSpan',
           start: 0,
@@ -127,7 +127,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::BoldSpan',
           start: 0,
@@ -142,7 +142,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::BoldSpan',
           start: 0,
@@ -161,7 +161,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::BoldSpan',
           start: 0,
@@ -179,7 +179,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::BoldSpan',
           start: 0,
@@ -198,7 +198,7 @@ describe('toHTML', function () {
     expect(
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::BoldSpan',
           start: 0,
@@ -217,7 +217,7 @@ describe('toHTML', function () {
 
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::BoldSpan',
           start: 0,
@@ -240,7 +240,7 @@ describe('toHTML', function () {
 
       toHTML({
         _type: 'Tik::ApiModel::Text::AttributedText',
-        text: 'abcdefghijklmnopqrstuvwxyz0123456789',
+        title: 'abcdefghijklmnopqrstuvwxyz0123456789',
         attrs: [{
           _type: 'Tik::ApiModel::Text::BoldSpan',
           start: 0,

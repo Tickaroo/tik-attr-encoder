@@ -13,10 +13,10 @@ $ npm install --save tik-attributed-text
 Below is a example of usage.
 
 ```javascript
-var tikAttrsEncode = require('tik-attributed-text/encode');
-var myHTML = tikAttrsEncode({
+var attrTextToHTML = require('tik-attributed-text/to-html');
+var myHTML = attrTextToHTML({
   _type: "Tik::ApiModel::Text::AttributedText",
-  text: "Hello World!",
+  title: "Hello World!",
   attrs: [
     {
       _type: "Tik::ApiModel::Text::BoldSpan",
