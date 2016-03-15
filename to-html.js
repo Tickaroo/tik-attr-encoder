@@ -18,6 +18,7 @@ function AttrsToHTML(AttributedText) {
   this.modifiersArray = this._initModifiersArray(AttributedText);
   this.bookmarks = [];
   this.tagLevelStack = [];
+  this.ignoreStack = [];
 }
 
 AttrsToHTML.prototype.getHTML = function (inputString) {
@@ -39,7 +40,9 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
       this.outputString += this.escapeHTMLchar(this.inputString[i]);
     }
   } else {
-    this.outputString = this.inputString;
+    for (i = 0; i <= this.inputString.length; i++) {
+      this.outputString += this.escapeHTMLchar(this.inputString[i]);
+    }
   }
   return this.outputString;
 };
@@ -51,7 +54,7 @@ AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
       i;
 
     for (i = this.tagLevelStack.length; i > 0; i--) {
-      if (i > modifierStackIndex && this.tagLevelStack[i - 1].ignore !== true) {
+      if (i > modifierStackIndex && this.ignoreStack[i - 1] !== true) {
         this.outputString += '</' + this.tagLevelStack[i - 1].type + '>';
       }
     }
@@ -59,7 +62,7 @@ AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
     this._removeModifierFromStack(bookmark, currentIndex);
 
     for (i = 0; i < this.tagLevelStack.length; i++) {
-      if (i >= modifierStackIndex && this.tagLevelStack[i].ignore !== true) {
+      if (i >= modifierStackIndex && this.ignoreStack[i] !== true) {
         this.outputString += this._getOpenTag(this.tagLevelStack[i]);
       }
     }
@@ -129,7 +132,7 @@ AttrsToHTML.prototype._removeModifierFromStack = function (bookmark, index) {
     var activeModifier = this.tagLevelStack[i];
     if (activeModifier) {
       if (bookmark.modifier.id === activeModifier.id || activeModifier.end == index) {
-        this.tagLevelStack[i].ignore = true;
+        this.ignoreStack[i] = true;
       }
     }
 
@@ -148,7 +151,7 @@ AttrsToHTML.prototype.escapeHTMLchar = function (char) {
     case '"':
       return '&quot;';
     case "'":
-      return '&#39;';
+      return '&apos;';
     default:
       return char;
     }
@@ -159,8 +162,6 @@ AttrsToHTML.prototype.escapeHTMLchar = function (char) {
 };
 
 module.exports = function (textObject, options) {
-
   var attrsToHTML = new AttrsToHTML(textObject, options);
-
   return attrsToHTML.getHTML();
 };
