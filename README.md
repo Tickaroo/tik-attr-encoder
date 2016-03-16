@@ -29,7 +29,7 @@ var myHTML = attrTextToHTML({
       end: 7
     }
   ]
-}); // => "He<b>ll<i>o</i></b><i> Wo</i>rld!"
+}); // => "He<strong>ll<em>o</em></strong><em> Wo</em>rld!"
 ```
 
 ## Options

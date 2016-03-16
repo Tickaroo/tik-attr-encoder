@@ -24,7 +24,7 @@ module.exports = [{
     attrs: []
   }, {
     test: 'single BoldSpan tag',
-    html: '<b>a</b>bcdefghijklmnopqrstuvwxyz0123456789',
+    html: '<strong>a</strong>bcdefghijklmnopqrstuvwxyz0123456789',
     title: 'abcdefghijklmnopqrstuvwxyz0123456789',
     attrs: [{
       _type: 'Tik::ApiModel::Text::BoldSpan',
@@ -33,7 +33,7 @@ module.exports = [{
     }]
   }, {
     test: 'single StrikethroughSpan tag',
-    html: '<s>a</s>bcdefghijklmnopqrstuvwxyz0123456789',
+    html: '<del>a</del>bcdefghijklmnopqrstuvwxyz0123456789',
     title: 'abcdefghijklmnopqrstuvwxyz0123456789',
     attrs: [{
       _type: 'Tik::ApiModel::Text::StrikethroughSpan',
@@ -42,7 +42,7 @@ module.exports = [{
     }]
   }, {
     test: 'single ItalicSpan tag',
-    html: '<i>a</i>bcdefghijklmnopqrstuvwxyz0123456789',
+    html: '<em>a</em>bcdefghijklmnopqrstuvwxyz0123456789',
     title: 'abcdefghijklmnopqrstuvwxyz0123456789',
     attrs: [{
       _type: 'Tik::ApiModel::Text::ItalicSpan',
@@ -75,7 +75,7 @@ module.exports = [{
   },
   {
     test: 'single containing tag',
-    html: '<b>abcdefghijklmnopqrstuvwxyz0123456789</b>',
+    html: '<strong>abcdefghijklmnopqrstuvwxyz0123456789</strong>',
     title: 'abcdefghijklmnopqrstuvwxyz0123456789',
     attrs: [{
       _type: 'Tik::ApiModel::Text::BoldSpan',
@@ -84,7 +84,7 @@ module.exports = [{
     }]
   }, {
     test: '2 separate tags',
-    html: '<b>abcdefghijk</b>lmno<u>pqrstu</u>vwxyz0123456789',
+    html: '<strong>abcdefghijk</strong>lmno<u>pqrstu</u>vwxyz0123456789',
     title: 'abcdefghijklmnopqrstuvwxyz0123456789',
     attrs: [{
       _type: 'Tik::ApiModel::Text::BoldSpan',
@@ -97,7 +97,7 @@ module.exports = [{
     }]
   }, {
     test: '2 touching tags',
-    html: '<b>abcdefghijk</b><u>lmnopqrstu</u>vwxyz0123456789',
+    html: '<strong>abcdefghijk</strong><u>lmnopqrstu</u>vwxyz0123456789',
     title: "abcdefghijklmnopqrstuvwxyz0123456789",
     attrs: [{
       _type: "Tik::ApiModel::Text::BoldSpan",
@@ -110,7 +110,7 @@ module.exports = [{
     }]
   }, {
     test: '2 overlapped tags',
-    html: '<b>abcde<u>fghijk</u></b><u>lmnopqrstu</u>vwxyz0123456789',
+    html: '<strong>abcde<u>fghijk</u></strong><u>lmnopqrstu</u>vwxyz0123456789',
     title: "abcdefghijklmnopqrstuvwxyz0123456789",
     attrs: [{
       _type: "Tik::ApiModel::Text::BoldSpan",
@@ -123,7 +123,7 @@ module.exports = [{
     }]
   }, {
     test: '2 exactly overlaping tags',
-    html: '<b><u>abcdefghijk</u></b>lmnopqrstuvwxyz0123456789',
+    html: '<strong><u>abcdefghijk</u></strong>lmnopqrstuvwxyz0123456789',
     title: "abcdefghijklmnopqrstuvwxyz0123456789",
     attrs: [{
       _type: "Tik::ApiModel::Text::BoldSpan",
@@ -136,7 +136,7 @@ module.exports = [{
     }]
   }, {
     test: '3 exactly overlaping tags',
-    html: '<b><u><s>abcdefghijk</s></u></b>lmnopqrstuvwxyz0123456789',
+    html: '<strong><u><del>abcdefghijk</del></u></strong>lmnopqrstuvwxyz0123456789',
     title: "abcdefghijklmnopqrstuvwxyz0123456789",
     attrs: [{
       _type: "Tik::ApiModel::Text::BoldSpan",
@@ -153,7 +153,7 @@ module.exports = [{
     }]
   }, {
     test: '4 exactly overlaping tags',
-    html: '<b><u><s><h3>abcdefghijk</h3></s></u></b>lmnopqrstuvwxyz0123456789',
+    html: '<strong><u><del><h3>abcdefghijk</h3></del></u></strong>lmnopqrstuvwxyz0123456789',
     title: "abcdefghijklmnopqrstuvwxyz0123456789",
     attrs: [{
       _type: "Tik::ApiModel::Text::BoldSpan",

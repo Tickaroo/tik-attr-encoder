@@ -1,9 +1,9 @@
 function AttrsToHTML(text, modifiersArray) {
   this.TYPES_STRUCT = {
     'Tik::ApiModel::Text::HeadlineSpan': 'h3',
-    'Tik::ApiModel::Text::BoldSpan': 'b',
-    'Tik::ApiModel::Text::ItalicSpan': 'i',
-    'Tik::ApiModel::Text::StrikethroughSpan': 's',
+    'Tik::ApiModel::Text::BoldSpan': 'strong',
+    'Tik::ApiModel::Text::ItalicSpan': 'em',
+    'Tik::ApiModel::Text::StrikethroughSpan': 'del',
     'Tik::ApiModel::Text::UnderlineSpan': 'u',
     'Tik::ApiModel::Text::RefSpan': 'a'
   };
