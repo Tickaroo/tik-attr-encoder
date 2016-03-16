@@ -4,10 +4,13 @@ var testData = require('./testdata.js');
 var jsdom = require('jsdom');
 
 describe('toAttrs', function () {
+  var doc = jsdom.jsdom();
   testData.forEach(function (testCase) {
     it(testCase.test, function () {
-      expect(toAttrs(testCase.html, {
-        jsdom: jsdom.jsdom()
+      var div = doc.createElement('div');
+      div.innerHTML = testCase.html;
+      expect(toAttrs(div, {
+        proxyDocument: doc
       })).to.deep.equal(testCase.attrs);
     });
   });

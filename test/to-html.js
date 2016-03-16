@@ -5,7 +5,7 @@ var testData = require('./testdata.js');
 describe('toHTML', function () {
   testData.forEach(function (testCase) {
     it(testCase.test, function () {
-      expect(toHTML(testCase.attrs, testCase.title)).to.equal(testCase.html);
+      expect(toHTML(testCase.title, testCase.attrs)).to.equal(testCase.html);
     });
   });
 });

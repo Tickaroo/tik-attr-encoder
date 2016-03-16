@@ -1,5 +1,4 @@
-function AttrsToHTML(modifiersArray,text) {
-
+function AttrsToHTML(text, modifiersArray) {
   this.TYPES_STRUCT = {
     'Tik::ApiModel::Text::HeadlineSpan': 'h3',
     'Tik::ApiModel::Text::BoldSpan': 'b',
@@ -44,10 +43,9 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
 };
 
 AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
-  var currentModifier = bookmark.modifier;
+  var i, modifierStackIndex, currentModifier = bookmark.modifier;
   if (bookmark.isEnd) {
-    var modifierStackIndex = this._getModifierStackIndex(currentModifier),
-      i;
+    modifierStackIndex = this._getModifierStackIndex(currentModifier);
 
     for (i = this.tagLevelStack.length; i > 0; i--) {
       if (i > modifierStackIndex && this.ignoreStack[i - 1] !== true) {
@@ -70,15 +68,15 @@ AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
 };
 
 AttrsToHTML.prototype._generateBookmarks = function () {
-  var i;
+  var i, modifier, modifierStart, modifierEnd;
   for (i = 0; i < this.modifiersArray.length; i++) {
-    var modifier = this.modifiersArray[i];
+    modifier = this.modifiersArray[i];
     modifier.end = modifier.end + 1;
-    var modifierStart = {
+    modifierStart = {
       modifier: modifier,
       isEnd: false
     };
-    var modifierEnd = {
+    modifierEnd = {
       modifier: modifier,
       isEnd: true
     };
@@ -98,7 +96,8 @@ AttrsToHTML.prototype._generateBookmarks = function () {
 };
 
 AttrsToHTML.prototype._getOpenTag = function (modifier) {
-  return '<' + this.TYPES_STRUCT[modifier._type] + (modifier._type === 'Tik::ApiModel::Text::RefSpan' ? ' href="' + modifier.ref + '"' : '') + '>';
+  var href = modifier._type === 'Tik::ApiModel::Text::RefSpan' ? ' href="' + modifier.ref + '"' : '';
+  return '<' + this.TYPES_STRUCT[modifier._type] + href + '>';
 };
 
 AttrsToHTML.prototype._initModifiersArray = function (modifiersArray) {
@@ -155,7 +154,7 @@ AttrsToHTML.prototype.escapeHTMLchar = function (char) {
 
 };
 
-module.exports = function (textObject, toHTML, options) {
-  var attrsToHTML = new AttrsToHTML(textObject,toHTML, options);
+module.exports = function (text, attrs, options) {
+  var attrsToHTML = new AttrsToHTML(text, attrs, options);
   return attrsToHTML.getHTML();
 };

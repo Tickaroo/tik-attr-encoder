@@ -22,30 +22,13 @@ function HTMLToAttrs(domEl, options) {
   this.ignoreStack = [];
   this.attrArray = [];
   this.currentIndex = 0;
-  if (typeof document === 'object') {
-    this.dom = document;
+  if (this.options.proxyDocument) {
+    this.window = this.options.proxyDocument.defaultView;
+  } else {
     this.window = window;
-  } else if (this.options.jsdom) {
-    this.dom = this.options.jsdom;
-    this.window = this.dom.defaultView;
   }
-  this.div = this.dom.createElement('div');
-  this.div.innerHTML = this.initInput(domEl);
+  this.div = domEl;
 }
-
-HTMLToAttrs.prototype.initInput = function (domEl) {
-  if (!domEl) {
-    domEl = '';
-  } else if (domEl instanceof this.window.Node) {
-    domEl = domEl.innerHTML;
-  }
-
-  if (typeof domEl !== 'string') {
-    console.warn('unknown domEl');
-    domEl = '';
-  }
-  return domEl;
-};
 
 HTMLToAttrs.prototype.getAttrs = function () {
   if (this.div.childNodes.length > 0) {
@@ -84,15 +67,17 @@ HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
       this.currentIndex += childNodesOrEl.textContent.length;
     }
   }
-  return;
 };
 
 HTMLToAttrs.prototype.compressTags = function () {
-  var i, n;
-  for (i = 0; i < this.tagStack.length; i++) {
-    for (n = i + 1; n < this.tagStack.length; n++) {
-      if (this.tagStack[i]._type === this.tagStack[n]._type && (this.tagStack[i].end + 1 === this.tagStack[n].start)) {
-        this.tagStack[i].end = this.tagStack[n].end;
+  var i, n, tagStackI, tagStackN, l;
+  l = this.tagStack.length;
+  for (i = 0; i < l; i++) {
+    tagStackI = this.tagStack[i];
+    for (n = i + 1; n < l; n++) {
+      tagStackN = this.tagStack[n];
+      if (tagStackI._type === tagStackN._type && tagStackN.start === tagStackI.end + 1) {
+        tagStackI.end = tagStackN.end;
         this.ignoreStack[n] = true;
       }
     }
@@ -100,11 +85,10 @@ HTMLToAttrs.prototype.compressTags = function () {
 };
 
 HTMLToAttrs.prototype.processTags = function () {
-  var i, attr, attributedText = [];
+  var i, attributedText = [];
   for (i = 0; i < this.tagStack.length; i++) {
-    attr = this.tagStack[i];
     if (!this.ignoreStack[i]) {
-      attributedText.push(attr);
+      attributedText.push(this.tagStack[i]);
     }
   }
   return attributedText;
