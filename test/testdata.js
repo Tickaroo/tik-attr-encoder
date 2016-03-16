@@ -28,7 +28,6 @@ module.exports = [{
     }
   },
   {
-    debug:true,
     test: 'encodes-decodes HTML',
     html: 'abcd&lt;efgh&gt;ijk&amp;lmno&quot;pqr&quot;stuvwxyz01&apos;23456789',
     attr: {

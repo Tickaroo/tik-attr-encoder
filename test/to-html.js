@@ -9,7 +9,7 @@ describe('toHTML', function () {
       if (testData[i].debug){
         debugger
       }
-      expect(toHTML(testData[i].attr)).to.equal(testData[i].html);
+      expect(toHTML(testData[i].attr),testData[i].test).to.equal(testData[i].html);
     }
   });
 });

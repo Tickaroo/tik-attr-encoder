@@ -55,7 +55,7 @@ AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
 
     for (i = this.tagLevelStack.length; i > 0; i--) {
       if (i > modifierStackIndex && this.ignoreStack[i - 1] !== true) {
-        this.outputString += '</' + this.tagLevelStack[i - 1].type + '>';
+        this.outputString += '</' + this.TYPES_STRUCT[this.tagLevelStack[i - 1]._type] + '>';
       }
     }
 
@@ -102,14 +102,13 @@ AttrsToHTML.prototype._generateBookmarks = function () {
 };
 
 AttrsToHTML.prototype._getOpenTag = function (modifier) {
-  return '<' + modifier.type + (modifier.type === 'a' ? ' href="' + modifier.ref + '"' : '') + '>';
+  return '<' + this.TYPES_STRUCT[modifier._type] + (modifier._type === 'Tik::ApiModel::Text::RefSpan' ? ' href="' + modifier.ref + '"' : '') + '>';
 };
 
 AttrsToHTML.prototype._initModifiersArray = function (AttributedText) {
   var modifiersArray = AttributedText.attrs,
     i;
   for (i = 0; i < modifiersArray.length; i++) {
-    modifiersArray[i].type = this.TYPES_STRUCT[modifiersArray[i]._type];
     modifiersArray[i].id = i;
   }
   return modifiersArray;
