@@ -1,4 +1,4 @@
-function HTMLToAttrs(htmlString, options) {
+function HTMLToAttrs(domEl, options) {
   this.TYPES_STRUCT = {
     'H3': 'Tik::ApiModel::Text::HeadlineSpan',
 
@@ -30,22 +30,22 @@ function HTMLToAttrs(htmlString, options) {
     this.window = this.dom.defaultView;
   }
   this.div = this.dom.createElement('div');
-  this.div.innerHTML = this.initInput(htmlString);
+  this.div.innerHTML = this.initInput(domEl);
 }
 
-HTMLToAttrs.prototype.initInput = function (htmlString) {
-  if (!htmlString) {
-    htmlString = '';
-  } else if (htmlString instanceof this.window.Node) {
-    htmlString = htmlString.innerHTML;
+HTMLToAttrs.prototype.initInput = function (domEl) {
+  if (!domEl) {
+    domEl = '';
+  } else if (domEl instanceof this.window.Node) {
+    domEl = domEl.innerHTML;
   }
 
-  if (typeof htmlString !== 'string') {
-    console.warn('unknown htmlString');
-    htmlString = ''
+  if (typeof domEl !== 'string') {
+    console.warn('unknown domEl');
+    domEl = '';
   }
-  return htmlString
-}
+  return domEl;
+};
 
 HTMLToAttrs.prototype.getAttrs = function () {
   if (this.div.childNodes.length > 0) {
@@ -55,7 +55,7 @@ HTMLToAttrs.prototype.getAttrs = function () {
     }
   }
   return this.processTags();
-}
+};
 
 HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
   var i, res;
@@ -71,7 +71,7 @@ HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
         _type: this.TYPES_STRUCT[childNodesOrEl.tagName],
         start: this.currentIndex,
         end: this.currentIndex + childNodesOrEl.textContent.length - 1
-      }
+      };
       if (childNodesOrEl.getAttribute('href')) {
         res.ref = childNodesOrEl.getAttribute('href');
       }
@@ -81,47 +81,36 @@ HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
     if (childNodesOrEl.children && childNodesOrEl.children.length > 0) {
       this._processNodes(childNodesOrEl.childNodes);
     } else if (this.TYPES_STRUCT[childNodesOrEl.nodeName]) {
-      this.currentIndex += childNodesOrEl.textContent.length
+      this.currentIndex += childNodesOrEl.textContent.length;
     }
   }
-  return
-}
+  return;
+};
 
 HTMLToAttrs.prototype.compressTags = function () {
   var i, n;
   for (i = 0; i < this.tagStack.length; i++) {
     for (n = i + 1; n < this.tagStack.length; n++) {
       if (this.tagStack[i]._type === this.tagStack[n]._type && (this.tagStack[i].end + 1 === this.tagStack[n].start)) {
-        this.tagStack[i].end = this.tagStack[n].end
+        this.tagStack[i].end = this.tagStack[n].end;
         this.ignoreStack[n] = true;
       }
     }
   }
-}
+};
 
 HTMLToAttrs.prototype.processTags = function () {
-  var attributedText = {
-      _type: 'Tik::ApiModel::Text::AttributedText',
-      attrs: []
-    },
-    attr;
-  attributedText.title = this.unescapeHTML(this.div.textContent);
+  var i, attr, attributedText = [];
   for (i = 0; i < this.tagStack.length; i++) {
-    attr = this.tagStack[i]
+    attr = this.tagStack[i];
     if (!this.ignoreStack[i]) {
-      delete attr.id;
-      attributedText.attrs.push(attr)
+      attributedText.push(attr);
     }
   }
   return attributedText;
-}
-
-HTMLToAttrs.prototype.unescapeHTML = function (html) {
-  return html
-    .replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&').replace('&quot;', '"').replace('&#39;', "'");
 };
 
-module.exports = function (htmlString, options) {
-  var htmlattrs = new HTMLToAttrs(htmlString, options);
+module.exports = function (domEl, options) {
+  var htmlattrs = new HTMLToAttrs(domEl, options);
   return htmlattrs.getAttrs();
 };

@@ -2,5 +2,6 @@
   "undef": true,
   "unused": true,
   "mocha": true,
-  "node": true
+  "node": true,
+  "predef": [ "window", "document" ]
 }

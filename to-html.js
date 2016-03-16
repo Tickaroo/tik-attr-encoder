@@ -1,8 +1,4 @@
-function AttrsToHTML(AttributedText) {
-
-  if (!(this instanceof AttrsToHTML)) {
-    return new AttrsToHTML(AttributedText);
-  }
+function AttrsToHTML(modifiersArray,text) {
 
   this.TYPES_STRUCT = {
     'Tik::ApiModel::Text::HeadlineSpan': 'h3',
@@ -13,9 +9,9 @@ function AttrsToHTML(AttributedText) {
     'Tik::ApiModel::Text::RefSpan': 'a'
   };
 
-  this.inputString = AttributedText.title;
+  this.inputString = text || '';
   this.outputString = '';
-  this.modifiersArray = this._initModifiersArray(AttributedText);
+  this.modifiersArray = this._initModifiersArray(modifiersArray);
   this.bookmarks = [];
   this.tagLevelStack = [];
   this.ignoreStack = [];
@@ -29,19 +25,19 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
 
   if (this.modifiersArray.length > 0) {
     this._generateBookmarks();
-    var i, n, indexBookmarks;
-    for (i = 0; i <= this.inputString.length; i++) {
+    var indexBookmarks;
+    for (var i = 0; i <= this.inputString.length; i++) {
       indexBookmarks = this.bookmarks[i];
       if (indexBookmarks) {
-        for (n = 0; n < indexBookmarks.length; n++) {
+        for (var n = 0; n < indexBookmarks.length; n++) {
           this._processBookmark(indexBookmarks[n], i);
         }
       }
       this.outputString += this.escapeHTMLchar(this.inputString[i]);
     }
   } else {
-    for (i = 0; i <= this.inputString.length; i++) {
-      this.outputString += this.escapeHTMLchar(this.inputString[i]);
+    for (var x = 0; x <= this.inputString.length; x++) {
+      this.outputString += this.escapeHTMLchar(this.inputString[x]);
     }
   }
   return this.outputString;
@@ -105,9 +101,8 @@ AttrsToHTML.prototype._getOpenTag = function (modifier) {
   return '<' + this.TYPES_STRUCT[modifier._type] + (modifier._type === 'Tik::ApiModel::Text::RefSpan' ? ' href="' + modifier.ref + '"' : '') + '>';
 };
 
-AttrsToHTML.prototype._initModifiersArray = function (AttributedText) {
-  var modifiersArray = AttributedText.attrs,
-    i;
+AttrsToHTML.prototype._initModifiersArray = function (modifiersArray) {
+  var i;
   for (i = 0; i < modifiersArray.length; i++) {
     modifiersArray[i].id = i;
   }
@@ -160,7 +155,7 @@ AttrsToHTML.prototype.escapeHTMLchar = function (char) {
 
 };
 
-module.exports = function (textObject, options) {
-  var attrsToHTML = new AttrsToHTML(textObject, options);
+module.exports = function (textObject, toHTML, options) {
+  var attrsToHTML = new AttrsToHTML(textObject,toHTML, options);
   return attrsToHTML.getHTML();
 };
