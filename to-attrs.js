@@ -35,7 +35,6 @@ function HTMLToAttrs(htmlString, options) {
 
 HTMLToAttrs.prototype.initInput = function (htmlString) {
   if (!htmlString) {
-    console.warn('empty htmlString');
     htmlString = '';
   } else if (htmlString instanceof this.window.Node) {
     htmlString = htmlString.innerHTML;
