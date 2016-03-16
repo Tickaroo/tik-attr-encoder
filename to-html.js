@@ -96,7 +96,7 @@ AttrsToHTML.prototype._generateBookmarks = function () {
 };
 
 AttrsToHTML.prototype._getOpenTag = function (modifier) {
-  var href = modifier._type === 'Tik::ApiModel::Text::RefSpan' ? ' href="' + modifier.ref + '"' : '';
+  var href = modifier.ref && modifier._type === 'Tik::ApiModel::Text::RefSpan' ? ' href="' + modifier.ref.url + '"' : '';
   return '<' + this.TYPES_STRUCT[modifier._type] + href + '>';
 };
 

@@ -59,17 +59,20 @@ module.exports = [{
       end: 0
     }]
   },
-  // {
-  //   test: 'single RefSpan tag',
-  //   html: '<a href="http://www.link.com/">a</a>bcdefghijklmnopqrstuvwxyz0123456789',
-  //   title: 'abcdefghijklmnopqrstuvwxyz0123456789',
-  //     attrs: [{
-  //       _type: 'Tik::ApiModel::Text::RefSpan',
-  //       start: 0,
-  //       end: 0,
-  //       ref: "http://www.link.com/"
-  //     }]
-  // },
+  {
+    test: 'single RefSpan tag',
+    html: '<a href="http://www.link.com/">a</a>bcdefghijklmnopqrstuvwxyz0123456789',
+    title: 'abcdefghijklmnopqrstuvwxyz0123456789',
+      attrs: [{
+        _type: 'Tik::ApiModel::Text::RefSpan',
+        start: 0,
+        end: 0,
+        ref: {
+          _type: "Tik::ApiModel::UrlRef",
+          url: "http://www.link.com/"
+        }
+      }]
+  },
   {
     test: 'single containing tag',
     html: '<b>abcdefghijklmnopqrstuvwxyz0123456789</b>',

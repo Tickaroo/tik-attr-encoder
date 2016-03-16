@@ -56,7 +56,10 @@ HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
         end: this.currentIndex + childNodesOrEl.textContent.length - 1
       };
       if (childNodesOrEl.getAttribute('href')) {
-        res.ref = childNodesOrEl.getAttribute('href');
+        res.ref = {
+          _type: 'Tik::ApiModel::UrlRef',
+          url: childNodesOrEl.getAttribute('href')
+        };
       }
       this.tagStack.push(res);
     }
