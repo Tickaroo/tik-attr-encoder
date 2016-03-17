@@ -13,27 +13,52 @@ $ npm install --save tik-attributed-text
 Below is a example of usage.
 
 ```javascript
-var attrTextToHTML = require('tik-attributed-text/to-html');
-var myHTML = attrTextToHTML({
-  _type: "Tik::ApiModel::Text::AttributedText",
-  title: "Hello World!",
-  attrs: [
-    {
-      _type: "Tik::ApiModel::Text::BoldSpan",
-      start: 2,
-      end: 5
-    },
-    {
-      _type: "Tik::ApiModel::Text::ItalicSpan",
-      start: 4,
-      end: 7
-    }
-  ]
-}); // => "He<strong>ll<em>o</em></strong><em> Wo</em>rld!"
+var attrsTextToHTML = require('tik-attributed-text/to-html');
+attrsTextToHTML("Hello World!", [
+  {
+    _type: "Tik::ApiModel::Text::BoldSpan",
+    start: 2,
+    end: 5
+  },
+  {
+    _type: "Tik::ApiModel::Text::ItalicSpan",
+    start: 4,
+    end: 7
+  }
+]); // => "He<strong>ll<em>o </em></strong><em>Wo</em>rld!"
+```
+
+```javascript
+var HTMLtoAttrs = require('tik-attributed-text/to-attrs');
+var div = doc.createElement('div');
+div.innerHTML = "He<strong>ll<em>o</em></strong><em> Wo</em>rld!";
+HTMLtoAttrs(div); /* => [
+  { _type: 'Tik::ApiModel::Text::BoldSpan', start: 2, end: 5 },
+  { _type: 'Tik::ApiModel::Text::ItalicSpan', start: 4, end: 7 }
+]*/
 ```
 
 ## Options
 
-#### `tbd`, required
+### to-attrs:
 
-tbd
+#### `insertLineBreakTag`
+
+default: `false`
+
+creates `<br>` tags after each `\n`
+
+
+### to-html:
+
+#### `proxyDocument`
+
+default: `undefined` (Browser document)
+
+if you want to run this function in a browserless environment like node
+
+#### `skipIntersectionsCompress`
+
+default: `false`
+
+if you want to skip intersections normalization
