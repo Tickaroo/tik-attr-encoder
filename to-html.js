@@ -1,4 +1,4 @@
-function AttrsToHTML(text, modifiersArray) {
+function AttrsToHTML(text, modifiersArray, options) {
   this.TYPES_STRUCT = {
     'Tik::ApiModel::Text::HeadlineSpan': 'h3',
     'Tik::ApiModel::Text::BoldSpan': 'strong',
@@ -11,6 +11,7 @@ function AttrsToHTML(text, modifiersArray) {
   this.inputString = text || '';
   this.outputString = '';
   this.modifiersArray = this._initModifiersArray(modifiersArray);
+  this.options = options || {};
   this.bookmarks = [];
   this.tagLevelStack = [];
   this.ignoreStack = [];
@@ -38,6 +39,9 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
     for (var x = 0; x < this.inputString.length; x++) {
       this.outputString += this.escapeHTMLchar(this.inputString[x]);
     }
+  }
+  if (this.options.insertLineBreakTag) {
+    this.outputString = this.outputString.replace(new RegExp('\n', 'g'), '\n<br>');
   }
   return this.outputString;
 };

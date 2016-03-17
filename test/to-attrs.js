@@ -42,4 +42,13 @@ describe('toAttrs', function () {
     expect(toHTML(div.textContent, attrs)).to.equal('asdfasdf\n\nasdf<u>asdf</u>asdfr');
   });
 
+  it('converts &nbsp; to utf-8', function () {
+    var div = doc.createElement('div');
+    div.innerHTML = 'asdfasdf&nbsp;<br>\n\n<br>asdf&nbsp;<br>\n<u>asdf</u>asdfr';
+    var attrs = toAttrs(div, {
+      proxyDocument: doc
+    });
+    expect(toHTML(div.textContent, attrs)).to.equal('asdfasdf\u00A0\n\nasdf\u00A0\n<u>asdf</u>asdfr');
+  });
+
 });
