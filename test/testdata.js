@@ -135,6 +135,19 @@ module.exports = [{
       end: 10
     }]
   }, {
+    test: '2 overlaping tags with one outside',
+    html: '<strong><u>abcdefghijk</u></strong><u>l</u>mnopqrstuvwxyz0123456789',
+    title: "abcdefghijklmnopqrstuvwxyz0123456789",
+    attrs: [{
+      _type: "Tik::ApiModel::Text::BoldSpan",
+      start: 0,
+      end: 10
+    }, {
+      _type: "Tik::ApiModel::Text::UnderlineSpan",
+      start: 0,
+      end: 11
+    }]
+  }, {
     test: '3 exactly overlaping tags',
     html: '<strong><u><del>abcdefghijk</del></u></strong>lmnopqrstuvwxyz0123456789',
     title: "abcdefghijklmnopqrstuvwxyz0123456789",
@@ -151,6 +164,23 @@ module.exports = [{
       start: 0,
       end: 10
     }]
+  // }, {
+  //   test: '3 overlaping tags with one outside',
+  //   html: '<strong><u><del>abcdefghijk</del></u></strong><del>l</del>mnopqrstuvwxyz0123456789',
+  //   title: "abcdefghijklmnopqrstuvwxyz0123456789",
+  //   attrs: [{
+  //     _type: "Tik::ApiModel::Text::BoldSpan",
+  //     start: 0,
+  //     end: 10
+  //   }, {
+  //     _type: "Tik::ApiModel::Text::UnderlineSpan",
+  //     start: 0,
+  //     end: 10
+  //   }, {
+  //     _type: "Tik::ApiModel::Text::StrikethroughSpan",
+  //     start: 0,
+  //     end: 11
+  //   }]
   }, {
     test: '4 exactly overlaping tags',
     html: '<strong><u><del><h3>abcdefghijk</h3></del></u></strong>lmnopqrstuvwxyz0123456789',
@@ -171,6 +201,19 @@ module.exports = [{
       _type: "Tik::ApiModel::Text::HeadlineSpan",
       start: 0,
       end: 10
+    }]
+  }, {
+    test: '3 exactly overlaping tags',
+    html: 'asdf <strong>asdf</strong><u> asdf</u>',
+    title: 'asdf asdf asdf',
+    attrs: [{
+      _type: "Tik::ApiModel::Text::BoldSpan",
+      start: 5,
+      end: 8
+    }, {
+      _type: "Tik::ApiModel::Text::UnderlineSpan",
+      start: 9,
+      end: 13
     }]
   }, {
     test: 'new lines',
