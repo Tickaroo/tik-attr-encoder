@@ -35,7 +35,7 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
       this.outputString += this.escapeHTMLchar(this.inputString[i]);
     }
   } else {
-    for (var x = 0; x <= this.inputString.length; x++) {
+    for (var x = 0; x < this.inputString.length; x++) {
       this.outputString += this.escapeHTMLchar(this.inputString[x]);
     }
   }
@@ -71,7 +71,6 @@ AttrsToHTML.prototype._generateBookmarks = function () {
   var i, modifier, modifierStart, modifierEnd;
   for (i = 0; i < this.modifiersArray.length; i++) {
     modifier = this.modifiersArray[i];
-    modifier.end = modifier.end + 1;
     modifierStart = {
       modifier: modifier,
       isEnd: false
@@ -100,10 +99,17 @@ AttrsToHTML.prototype._getOpenTag = function (modifier) {
   return '<' + this.TYPES_STRUCT[modifier._type] + href + '>';
 };
 
-AttrsToHTML.prototype._initModifiersArray = function (modifiersArray) {
-  var i;
-  for (i = 0; i < modifiersArray.length; i++) {
-    modifiersArray[i].id = i;
+AttrsToHTML.prototype._initModifiersArray = function (originalModifiersArray) {
+  var i, modifier, modifiersArray = [];
+  for (i = 0; i < originalModifiersArray.length; i++) {
+    modifier = originalModifiersArray[i];
+    modifiersArray.push({
+      id: i,
+      _type: modifier._type,
+      ref: modifier.ref,
+      start: modifier.start,
+      end: modifier.end + 1
+    });
   }
   return modifiersArray;
 };
@@ -124,11 +130,10 @@ AttrsToHTML.prototype._removeModifierFromStack = function (bookmark, index) {
   for (i = 0; i < this.tagLevelStack.length; i++) {
     var activeModifier = this.tagLevelStack[i];
     if (activeModifier) {
-      if (bookmark.modifier.id === activeModifier.id || activeModifier.end == index) {
+      if (bookmark.modifier.id === activeModifier.id || activeModifier.end === index) {
         this.ignoreStack[i] = true;
       }
     }
-
   }
 };
 

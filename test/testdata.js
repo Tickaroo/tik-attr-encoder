@@ -172,5 +172,19 @@ module.exports = [{
       start: 0,
       end: 10
     }]
+  }, {
+    test: 'new lines',
+    html: "abcdefghijklmno\npqrstuvwxyz0123456789",
+    title: 'abcdefghijklmno\npqrstuvwxyz0123456789',
+    attrs: []
+  }, {
+    test: 'new lines with elem',
+    html: 'abcdefghijklmn<del>o\npq</del>rstuvwxyz0123456789',
+    title: 'abcdefghijklmno\npqrstuvwxyz0123456789',
+    attrs: [{
+      _type: 'Tik::ApiModel::Text::StrikethroughSpan',
+      start: 14,
+      end: 17
+    }]
   }
 ];
