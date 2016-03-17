@@ -73,13 +73,19 @@ HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
 };
 
 HTMLToAttrs.prototype.compressTags = function () {
-  var i, n, tagStackI, tagStackN, l;
+  var i, n, l, tagStackI, tagStackN, hasSameRef;
   l = this.tagStack.length;
   for (i = 0; i < l; i++) {
     tagStackI = this.tagStack[i];
     for (n = i + 1; n < l; n++) {
       tagStackN = this.tagStack[n];
-      if (tagStackI._type === tagStackN._type && tagStackN.start === tagStackI.end + 1) {
+
+      hasSameRef = true;
+      if (tagStackI.ref && tagStackN.ref) {
+        hasSameRef = JSON.stringify(tagStackI.ref) === JSON.stringify(tagStackN.ref);
+      }
+
+      if (tagStackI._type === tagStackN._type && hasSameRef && tagStackN.start === tagStackI.end + 1) {
         tagStackI.end = tagStackN.end;
         this.ignoreStack[n] = true;
       }
