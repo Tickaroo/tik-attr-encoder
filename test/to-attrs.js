@@ -36,10 +36,10 @@ describe('toAttrs', function () {
   it('to hell and back and back again', function () {
     var div = doc.createElement('div');
     div.innerHTML = 'asdfasdf<br>\n\n<br>asdf<u>asdf</u>asdfr';
-    a = toAttrs(div, {
+    var attrs = toAttrs(div, {
       proxyDocument: doc
     });
-    expect(toHTML(div.textContent, a)).to.equal('asdfasdf\n\nasdf<u>asdf</u>asdfr');
+    expect(toHTML(div.textContent, attrs)).to.equal('asdfasdf\n\nasdf<u>asdf</u>asdfr');
   });
 
 });
