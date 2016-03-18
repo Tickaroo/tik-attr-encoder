@@ -216,7 +216,7 @@ module.exports = [{
 }, {
   test: '6 tags with 2 times 3 overlaping tags with one outside',
   html: '<strong><u><del>abcdefghijk</del></u></strong><del>l</del>mnopqrstuvwxyz0123456789<strong><u><del>abcdefghijk</del></u></strong><del>l</del>',
-  title: "abcdefghijklmnopqrstuvwxyz0123456789",
+  title: "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijkl",
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
