@@ -75,6 +75,9 @@ AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
     }
 
   } else {
+    if (currentModifier.start > currentModifier.end) {
+      return;
+    }
     this.tagLevelStack.push(currentModifier);
     this.outputString += this._getOpenTag(currentModifier);
   }
