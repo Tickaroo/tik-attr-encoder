@@ -43,7 +43,15 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
   if (this.options.insertLineBreakTag) {
     this.outputString = this.outputString.replace(new RegExp('\n', 'g'), '\n<br>');
   }
-  return this.outputString;
+  return this._filterOutput(this.outputString);
+};
+
+AttrsToHTML.prototype._filterOutput = function (html) {
+  return html.replace('<del></del>','')
+  .replace('<h3></h3>','')
+  .replace('<strong></strong>','')
+  .replace('<em></em>','')
+  .replace('<u></u>','');
 };
 
 AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
@@ -105,16 +113,28 @@ AttrsToHTML.prototype._getOpenTag = function (modifier) {
 
 AttrsToHTML.prototype._initModifiersArray = function (originalModifiersArray) {
   var i, modifier, modifiersArray = [];
-  for (i = 0; i < originalModifiersArray.length; i++) {
-    modifier = originalModifiersArray[i];
-    modifiersArray.push({
-      id: i,
-      _type: modifier._type,
-      ref: modifier.ref,
-      start: modifier.start,
-      end: modifier.end + 1
+  if (originalModifiersArray.length > 0) {
+    for (i = 0; i < originalModifiersArray.length; i++) {
+      modifier = originalModifiersArray[i];
+      modifiersArray.push({
+        id: i,
+        _type: modifier._type,
+        ref: modifier.ref,
+        start: modifier.start,
+        end: modifier.end + 1
+      });
+    }
+    modifiersArray.sort(function (a, b) {
+      if (a.start < b.start) {
+        return -1;
+      }
+      if (a.start > b.start) {
+        return 1;
+      }
+      return 0;
     });
   }
+
   return modifiersArray;
 };
 
