@@ -8,17 +8,23 @@ var arrayIt = function (testCase) {
   it(testCase.test, function () {
     var div = doc.createElement('div');
     div.innerHTML = testCase.html;
-    expect(toAttrs(div, {
+    var attrs = toAttrs(div, {
       proxyDocument: doc
-    }, testCase.options)).to.deep.equal(testCase.attrs.sort(function (a, b) {
-      if (a.start < b.start) {
-        return -1;
+    }, testCase.options);
+    if (attrs.length !== testCase.attrs.length) {
+      expect(attrs).to.deep.equal(testCase.attrs);
+    }
+    testCase.attrs.forEach(function(testAttr){
+      var found = false;
+      attrs.forEach(function(attr){
+        if (JSON.stringify(testAttr) === JSON.stringify(attr)) {
+          found = true;
+        }
+      });
+      if ( ! found) {
+        expect(attrs).to.deep.equal(testCase.attrs);
       }
-      if (a.start > b.start) {
-        return 1;
-      }
-      return 0;
-    }));
+    });
   });
 };
 
