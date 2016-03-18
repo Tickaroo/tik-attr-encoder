@@ -47,11 +47,12 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
 };
 
 AttrsToHTML.prototype._filterOutput = function (html) {
-  return html.replace('<del></del>','')
-  .replace('<h3></h3>','')
-  .replace('<strong></strong>','')
-  .replace('<em></em>','')
-  .replace('<u></u>','');
+  return html
+    .replace(new RegExp('<del></del>', 'g'), '')
+    .replace(new RegExp('<h3></h3>', 'g'), '')
+    .replace(new RegExp('<strong></strong>', 'g'), '')
+    .replace(new RegExp('<em></em>', 'g'), '')
+    .replace(new RegExp('<u></u>', 'g'), '');
 };
 
 AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
