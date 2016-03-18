@@ -14,14 +14,14 @@ var arrayIt = function (testCase) {
     if (attrs.length !== testCase.attrs.length) {
       expect(attrs).to.deep.equal(testCase.attrs);
     }
-    testCase.attrs.forEach(function(testAttr){
+    testCase.attrs.forEach(function (testAttr) {
       var found = false;
-      attrs.forEach(function(attr){
+      attrs.forEach(function (attr) {
         if (JSON.stringify(testAttr) === JSON.stringify(attr)) {
           found = true;
         }
       });
-      if ( ! found) {
+      if (!found) {
         expect(attrs).to.deep.equal(testCase.attrs);
       }
     });
