@@ -41,6 +41,19 @@ module.exports = [{
       end: 0
     }]
   }, {
+  //   text: "attribute orders unsorted and complicated",
+  //   title: "Ultra mega span\nBold, italic, unterstrichen. Und alles durchgestrichen natürlich. Der Text unten natürlich ned",
+  //   html: "<del><strong>Ultra </strong><em>mega </em><u>span\nB</u></del>old, italic, unterstrichen. Und alles durchgestrichen natürlich. Der Text unten natürlich ned",
+  //   attrs: [{
+  //     "_type":"Tik::ApiModel::Text::UnderlineSpan","start":11,"end":16
+  //   },{
+  //     "_type":"Tik::ApiModel::Text::StrikethroughSpan","start":0,"end":16
+  //   },{
+  //     "_type":"Tik::ApiModel::Text::BoldSpan","start":0,"end":5
+  //   },{
+  //     "_type":"Tik::ApiModel::Text::ItalicSpan","start":6,"end":10
+  //   }]
+  // }, {
     test: 'single ItalicSpan tag',
     html: '<em>a</em>bcdefghijklmnopqrstuvwxyz0123456789',
     title: 'abcdefghijklmnopqrstuvwxyz0123456789',
