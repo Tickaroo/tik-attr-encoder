@@ -33,8 +33,8 @@ var HTMLtoAttrs = require('tik-attributed-text/to-attrs');
 var div = doc.createElement('div');
 div.innerHTML = "He<strong>ll<em>o</em></strong><em> Wo</em>rld!";
 HTMLtoAttrs(div); /* => [
-  { _type: 'Tik::ApiModel::Text::BoldSpan', start: 2, end: 5 },
-  { _type: 'Tik::ApiModel::Text::ItalicSpan', start: 4, end: 7 }
+  { _type: 'Tik::ApiModel::Text::BoldSpan', start: 2, end: 6 },
+  { _type: 'Tik::ApiModel::Text::ItalicSpan', start: 4, end: 8 }
 ]*/
 ```
 
