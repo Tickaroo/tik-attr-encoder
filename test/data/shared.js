@@ -214,6 +214,35 @@ module.exports = [{
     end: 12
   }]
 }, {
+  test: '6 tags with 2 times 3 overlaping tags with one outside',
+  html: '<strong><u><del>abcdefghijk</del></u></strong><del>l</del>mnopqrstuvwxyz0123456789<strong><u><del>abcdefghijk</del></u></strong><del>l</del>',
+  title: "abcdefghijklmnopqrstuvwxyz0123456789",
+  attrs: [{
+    _type: "Tik::ApiModel::Text::BoldSpan",
+    start: 0,
+    end: 11
+  }, {
+    _type: "Tik::ApiModel::Text::UnderlineSpan",
+    start: 0,
+    end: 11
+  }, {
+    _type: "Tik::ApiModel::Text::StrikethroughSpan",
+    start: 0,
+    end: 12
+  }, {
+    _type: "Tik::ApiModel::Text::BoldSpan",
+    start: 36,
+    end: 47
+  }, {
+    _type: "Tik::ApiModel::Text::UnderlineSpan",
+    start: 36,
+    end: 47
+  }, {
+    _type: "Tik::ApiModel::Text::StrikethroughSpan",
+    start: 36,
+    end: 48
+  }]
+}, {
   test: '4 exactly overlaping tags',
   html: '<strong><u><del><h3>abcdefghijk</h3></del></u></strong>lmnopqrstuvwxyz0123456789',
   title: "abcdefghijklmnopqrstuvwxyz0123456789",
