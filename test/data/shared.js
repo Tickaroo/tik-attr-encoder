@@ -15,7 +15,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::HeadlineSpan',
     start: 0,
-    end: 0
+    end: 1
   }]
 }, {
   test: 'encodes-decodes HTML',
@@ -29,7 +29,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::BoldSpan',
     start: 0,
-    end: 0
+    end: 1
   }]
 }, {
   test: 'single StrikethroughSpan tag',
@@ -38,7 +38,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::StrikethroughSpan',
     start: 0,
-    end: 0
+    end: 1
   }]
 }, {
   text: "attribute orders unsorted and complicated",
@@ -47,19 +47,19 @@ module.exports = [{
   attrs: [{
     "_type": "Tik::ApiModel::Text::UnderlineSpan",
     "start": 11,
-    "end": 16
+    "end": 17
   }, {
     "_type": "Tik::ApiModel::Text::StrikethroughSpan",
     "start": 0,
-    "end": 16
+    "end": 17
   }, {
     "_type": "Tik::ApiModel::Text::BoldSpan",
     "start": 0,
-    "end": 5
+    "end": 6
   }, {
     "_type": "Tik::ApiModel::Text::ItalicSpan",
     "start": 6,
-    "end": 10
+    "end": 11
   }]
 }, {
   test: 'single ItalicSpan tag',
@@ -68,7 +68,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::ItalicSpan',
     start: 0,
-    end: 0
+    end: 1
   }]
 }, {
   test: 'single UnderlineSpan tag',
@@ -77,7 +77,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::UnderlineSpan',
     start: 0,
-    end: 0
+    end: 1
   }]
 }, {
   test: 'single RefSpan tag',
@@ -86,7 +86,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::RefSpan',
     start: 0,
-    end: 0,
+    end: 1,
     ref: {
       _type: "Tik::ApiModel::UrlRef",
       url: "http://www.link.com/"
@@ -99,7 +99,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::BoldSpan',
     start: 0,
-    end: 35
+    end: 36
   }]
 }, {
   test: '2 separate tags',
@@ -108,11 +108,11 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::BoldSpan',
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 15,
-    end: 20
+    end: 21
   }]
 }, {
   test: '2 separate tags order',
@@ -121,11 +121,11 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 15,
-    end: 20
+    end: 21
   }, {
     _type: 'Tik::ApiModel::Text::BoldSpan',
     start: 0,
-    end: 10
+    end: 11
   }]
 }, {
   test: '2 touching tags',
@@ -134,11 +134,11 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 11,
-    end: 20
+    end: 21
   }]
 }, {
   test: '2 overlapped tags',
@@ -147,11 +147,11 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 5,
-    end: 20
+    end: 21
   }]
 }, {
   test: '2 exactly overlaping tags',
@@ -160,11 +160,11 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 0,
-    end: 10
+    end: 11
   }]
 }, {
   test: '2 overlaping tags with one outside',
@@ -173,11 +173,11 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 0,
-    end: 11
+    end: 12
   }]
 }, {
   test: '3 exactly overlaping tags',
@@ -186,15 +186,15 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::StrikethroughSpan",
     start: 0,
-    end: 10
+    end: 11
   }]
 }, {
   test: '3 overlaping tags with one outside',
@@ -203,15 +203,15 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::StrikethroughSpan",
     start: 0,
-    end: 11
+    end: 12
   }]
 }, {
   test: '4 exactly overlaping tags',
@@ -220,19 +220,19 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::StrikethroughSpan",
     start: 0,
-    end: 10
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::HeadlineSpan",
     start: 0,
-    end: 10
+    end: 11
   }]
 }, {
   test: '3 exactly overlaping tags',
@@ -241,11 +241,11 @@ module.exports = [{
   attrs: [{
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 5,
-    end: 8
+    end: 9
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 9,
-    end: 13
+    end: 14
   }]
 }, {
   test: 'new lines',
@@ -259,7 +259,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::StrikethroughSpan',
     start: 14,
-    end: 17
+    end: 18
   }]
 }, {
   test: 'doesnt merge different refs',
@@ -268,7 +268,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::RefSpan',
     start: 8,
-    end: 11,
+    end: 12,
     ref: {
       _type: 'Tik::ApiModel::UrlRef',
       url: 'blub'
@@ -276,7 +276,7 @@ module.exports = [{
   }, {
     _type: 'Tik::ApiModel::Text::RefSpan',
     start: 12,
-    end: 15,
+    end: 16,
     ref: {
       _type: 'Tik::ApiModel::UrlRef',
       url: 'moot'
@@ -289,7 +289,7 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::HeadlineSpan',
     start: 0,
-    end: 0
+    end: 1
   }],
   options:{insertLineBreakTag:true}
 }];

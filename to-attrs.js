@@ -53,7 +53,7 @@ HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
       res = {
         _type: this.TYPES_STRUCT[childNodesOrEl.tagName],
         start: this.currentIndex,
-        end: this.currentIndex + childNodesOrEl.textContent.length - 1
+        end: this.currentIndex + childNodesOrEl.textContent.length
       };
       if (childNodesOrEl.getAttribute('href')) {
         res.ref = {
@@ -79,7 +79,7 @@ HTMLToAttrs.prototype.compressTags = function () {
     tagStackI = this.tagStack[i];
     for (n = i + 1; n < l; n++) {
       tagStackN = this.tagStack[n];
-      if (tagStackN.start === tagStackI.end + 1 && tagStackI._type === tagStackN._type) {
+      if (tagStackN.start === tagStackI.end && tagStackI._type === tagStackN._type) {
         if (tagStackI.ref !== tagStackN.ref && JSON.stringify(tagStackI.ref) !== JSON.stringify(tagStackN.ref)) {
           continue;
         }

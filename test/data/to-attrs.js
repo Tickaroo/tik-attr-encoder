@@ -10,6 +10,6 @@ module.exports = [{
   attrs: [{
     _type: 'Tik::ApiModel::Text::UnderlineSpan',
     start: 13,
-    end: 16
+    end: 17
   }]
 }];

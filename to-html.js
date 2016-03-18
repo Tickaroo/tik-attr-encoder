@@ -121,7 +121,7 @@ AttrsToHTML.prototype._initModifiersArray = function (originalModifiersArray) {
         _type: modifier._type,
         ref: modifier.ref,
         start: modifier.start,
-        end: modifier.end + 1
+        end: modifier.end
       });
     }
     modifiersArray.sort(function (a, b) {
