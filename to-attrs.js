@@ -27,12 +27,12 @@ function HTMLToAttrs(domEl, options) {
   } else {
     this.window = window;
   }
-  this.div = domEl;
+  this.domEl = domEl;
 }
 
 HTMLToAttrs.prototype.getAttrs = function () {
-  if (this.div.childNodes.length > 0) {
-    this._processNodes(this.div.childNodes);
+  if (this.domEl.childNodes.length > 0) {
+    this._processNodes(this.domEl.childNodes);
     if (!this.options.skipIntersectionsCompress) {
       this.compressTags();
     }

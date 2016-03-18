@@ -1,4 +1,4 @@
-function AttrsToHTML(text, modifiersArray, options) {
+function AttrsToHTML(text, attrsArray, options) {
   this.TYPES_STRUCT = {
     'Tik::ApiModel::Text::HeadlineSpan': 'h3',
     'Tik::ApiModel::Text::BoldSpan': 'strong',
@@ -10,7 +10,7 @@ function AttrsToHTML(text, modifiersArray, options) {
 
   this.inputString = text || '';
   this.outputString = '';
-  this.modifiersArray = this._initModifiersArray(modifiersArray);
+  this.attrsArray = this._initModifiersArray(attrsArray);
   this.options = options || {};
   this.bookmarks = [];
   this.tagLevelStack = [];
@@ -23,7 +23,7 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
   this.tagLevelStack = [];
   this.inputString = inputString || this.inputString;
 
-  if (this.modifiersArray.length > 0) {
+  if (this.attrsArray.length > 0) {
     this._generateBookmarks();
     var indexBookmarks;
     for (var i = 0; i <= this.inputString.length; i++) {
@@ -82,8 +82,8 @@ AttrsToHTML.prototype._processBookmark = function (bookmark, currentIndex) {
 
 AttrsToHTML.prototype._generateBookmarks = function () {
   var i, modifier, modifierStart, modifierEnd;
-  for (i = 0; i < this.modifiersArray.length; i++) {
-    modifier = this.modifiersArray[i];
+  for (i = 0; i < this.attrsArray.length; i++) {
+    modifier = this.attrsArray[i];
     modifierStart = {
       modifier: modifier,
       isEnd: false
@@ -113,11 +113,11 @@ AttrsToHTML.prototype._getOpenTag = function (modifier) {
 };
 
 AttrsToHTML.prototype._initModifiersArray = function (originalModifiersArray) {
-  var i, modifier, modifiersArray = [];
+  var i, modifier, attrsArray = [];
   if (originalModifiersArray.length > 0) {
     for (i = 0; i < originalModifiersArray.length; i++) {
       modifier = originalModifiersArray[i];
-      modifiersArray.push({
+      attrsArray.push({
         id: i,
         _type: modifier._type,
         ref: modifier.ref,
@@ -125,7 +125,7 @@ AttrsToHTML.prototype._initModifiersArray = function (originalModifiersArray) {
         end: modifier.end
       });
     }
-    modifiersArray.sort(function (a, b) {
+    attrsArray.sort(function (a, b) {
       if (a.start < b.start) {
         return -1;
       }
@@ -136,7 +136,7 @@ AttrsToHTML.prototype._initModifiersArray = function (originalModifiersArray) {
     });
   }
 
-  return modifiersArray;
+  return attrsArray;
 };
 
 AttrsToHTML.prototype._getModifierStackIndex = function (modifier) {
