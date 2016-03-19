@@ -2,15 +2,19 @@ var expect = require('chai').expect;
 var toAttrs = require('../to-attrs.js');
 var sharedData = require('./data/shared.js');
 var attrsData = require('./data/to-attrs.js');
-var doc = require('jsdom').jsdom();
+var jsdomDocument = require('jsdom').jsdom();
 
 var arrayIt = function (testCase) {
   it(testCase.test, function () {
-    var div = doc.createElement('div');
-    div.innerHTML = testCase.html;
-    var attrs = toAttrs(div, {
-      proxyDocument: doc
-    }, testCase.options);
+    var options;
+    if (testCase.options) {
+      options = testCase.options;
+      options.proxyDocument = jsdomDocument;
+    }
+    else {
+      options = {proxyDocument: jsdomDocument};
+    }
+    var attrs = toAttrs(testCase.html, options);
     if (attrs.length !== testCase.attrs.length) {
       expect(attrs).to.deep.equal(testCase.attrs);
     }

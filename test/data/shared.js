@@ -312,13 +312,37 @@ module.exports = [{
     }
   }]
 }, {
+  test: 'removes unknown <tags>',
+  html: 'asdfasdf&lt;ul&gt;asdf&lt;/ul&gt;asdfr',
+  title: 'asdfasdf<ul>asdf</ul>asdfr',
+  attrs: []
+}, {
   test: 'converts newlines to breaklines with option',
-  html: '<h3>a</h3>sdfasdf\n<br>\n<br>asdf\n<br>asdfasdfr',
+  html: '<h3>a</h3>sdfasdf<br><br>asdf<br>asdfasdfr',
   title: 'asdfasdf\n\nasdf\nasdfasdfr',
   attrs: [{
     _type: 'Tik::ApiModel::Text::HeadlineSpan',
     start: 0,
     end: 1
+  }],
+  options:{insertLineBreakTag:true}
+}, {
+  test: 'removes <br>',
+  html: 'asdfasdf\nasdf<u>asdf</u>asdfr',
+  title: 'asdfasdf\nasdfasdfasdfr',
+  attrs: [{
+    _type: 'Tik::ApiModel::Text::UnderlineSpan',
+    start: 13,
+    end: 17
+  }]
+}, {
+  test: 'does not remove <br>',
+  html: 'asdfasdf<br>asdf<u>asdf</u>asdfr',
+  title: 'asdfasdf\nasdfasdfasdfr',
+  attrs: [{
+    _type: 'Tik::ApiModel::Text::UnderlineSpan',
+    start: 13,
+    end: 17
   }],
   options:{insertLineBreakTag:true}
 }];

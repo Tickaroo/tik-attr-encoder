@@ -1,4 +1,5 @@
-function HTMLToAttrs(domEl, options) {
+function HTMLToAttrs(htmlString, options) {
+  var div;
   this.TYPES_STRUCT = {
     'H3': 'Tik::ApiModel::Text::HeadlineSpan',
 
@@ -23,11 +24,19 @@ function HTMLToAttrs(domEl, options) {
   this.attrArray = [];
   this.currentIndex = 0;
   if (this.options.proxyDocument) {
+    div = this.options.proxyDocument.createElement('div');
     this.window = this.options.proxyDocument.defaultView;
   } else {
+    div = document.createElement('div');
     this.window = window;
   }
-  this.domEl = domEl;
+  if (this.options.insertLineBreakTag) {
+    div.innerHTML = htmlString.replace(new RegExp('<br>', 'g'), '\n');
+  }
+  else {
+    div.innerHTML = htmlString;
+  }
+  this.domEl = div;
 }
 
 HTMLToAttrs.prototype.getAttrs = function () {
@@ -100,7 +109,7 @@ HTMLToAttrs.prototype.processTags = function () {
   return attributedText;
 };
 
-module.exports = function (domEl, options) {
-  var htmlattrs = new HTMLToAttrs(domEl, options);
-  return htmlattrs.getAttrs();
+module.exports = function (htmlString, options) {
+  var htmlAttrs = new HTMLToAttrs(htmlString, options);
+  return htmlAttrs.getAttrs();
 };

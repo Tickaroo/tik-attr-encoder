@@ -29,10 +29,7 @@ attrsTextToHTML("Hello World!", [
 ```
 
 ```javascript
-var HTMLtoAttrs = require('tik-attributed-text/to-attrs');
-var div = doc.createElement('div');
-div.innerHTML = "He<strong>ll<em>o</em></strong><em> Wo</em>rld!";
-HTMLtoAttrs(div); /* => [
+HTMLtoAttrs("He<strong>ll<em>o</em></strong><em> Wo</em>rld!"); /* => [
   { _type: 'Tik::ApiModel::Text::BoldSpan', start: 2, end: 6 },
   { _type: 'Tik::ApiModel::Text::ItalicSpan', start: 4, end: 8 }
 ]*/

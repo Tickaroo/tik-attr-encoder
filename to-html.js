@@ -41,7 +41,7 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
     }
   }
   if (this.options.insertLineBreakTag) {
-    this.outputString = this.outputString.replace(new RegExp('\n', 'g'), '\n<br>');
+    this.outputString = this.outputString.replace(new RegExp('\n', 'g'), '<br>');
   }
   return this._filterOutput(this.outputString);
 };
