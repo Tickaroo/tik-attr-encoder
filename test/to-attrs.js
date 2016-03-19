@@ -7,14 +7,18 @@ var jsdomDocument = require('jsdom').jsdom();
 var arrayIt = function (testCase) {
   it(testCase.test, function () {
     var options;
-    if (testCase.options) {
-      options = testCase.options;
+    if (testCase.options && testCase.options.toAttrs) {
+      options = testCase.options.toAttrs;
       options.proxyDocument = jsdomDocument;
     }
     else {
       options = {proxyDocument: jsdomDocument};
     }
-    var attrs = toAttrs(testCase.html, options);
+    var textAttrs = toAttrs(testCase.html, options);
+    var attrs = textAttrs.attrs;
+    if (textAttrs.text) {
+      expect(textAttrs.text).to.equal(testCase.text);
+    }
     if (attrs.length !== testCase.attrs.length) {
       expect(attrs).to.deep.equal(testCase.attrs);
     }

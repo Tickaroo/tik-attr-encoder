@@ -29,21 +29,24 @@ attrsTextToHTML("Hello World!", [
 ```
 
 ```javascript
-HTMLtoAttrs("He<strong>ll<em>o</em></strong><em> Wo</em>rld!"); /* => [
-  { _type: 'Tik::ApiModel::Text::BoldSpan', start: 2, end: 6 },
-  { _type: 'Tik::ApiModel::Text::ItalicSpan', start: 4, end: 8 }
-]*/
+HTMLtoAttrs("He<strong>ll<em>o</em></strong><em> Wo</em>rld!"); /* => {
+  text: "Hello World!",
+  attrs: [
+    { _type: 'Tik::ApiModel::Text::BoldSpan', start: 2, end: 6 },
+    { _type: 'Tik::ApiModel::Text::ItalicSpan', start: 4, end: 8 }
+  ]
+}*/
 ```
 
 ## Options
 
 ### to-attrs:
 
-#### `insertLineBreakTag`
+#### `replaceBrTagWithNewLine`
 
 default: `false`
 
-creates `<br>` tags after each `\n`
+replaces `<br>` tags with new lines `\n`
 
 
 ### to-html:
@@ -59,3 +62,9 @@ if you want to run this function in a browserless environment like node
 default: `false`
 
 if you want to skip intersections normalization
+
+#### `replaceNewLinesWithBrTag`
+
+default: `false`
+
+replaces new lines `\n` with `<br>` tags

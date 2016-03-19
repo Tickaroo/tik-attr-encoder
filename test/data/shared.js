@@ -325,7 +325,14 @@ module.exports = [{
     start: 0,
     end: 1
   }],
-  options:{insertLineBreakTag:true}
+  options: {
+    toAttrs: {
+      replaceBrTagWithNewLine: true
+    },
+    toHTML: {
+      replaceNewLinesWithBrTag: true
+    }
+  }
 }, {
   test: 'removes <br>',
   html: 'asdfasdf\nasdf<u>asdf</u>asdfr',
@@ -344,5 +351,12 @@ module.exports = [{
     start: 13,
     end: 17
   }],
-  options:{insertLineBreakTag:true}
+  options: {
+    toAttrs: {
+      replaceBrTagWithNewLine: true
+    },
+    toHTML: {
+      replaceNewLinesWithBrTag: true
+    }
+  }
 }];

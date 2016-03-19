@@ -40,7 +40,7 @@ AttrsToHTML.prototype.getHTML = function (inputString) {
       this.outputString += this.escapeHTMLchar(this.inputString[x]);
     }
   }
-  if (this.options.insertLineBreakTag) {
+  if (this.options.replaceNewLinesWithBrTag) {
     this.outputString = this.outputString.replace(new RegExp('\n', 'g'), '<br>');
   }
   return this._filterOutput(this.outputString);

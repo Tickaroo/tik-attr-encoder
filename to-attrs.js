@@ -30,7 +30,7 @@ function HTMLToAttrs(htmlString, options) {
     div = document.createElement('div');
     this.window = window;
   }
-  if (this.options.insertLineBreakTag) {
+  if (this.options.replaceBrTagWithNewLine) {
     div.innerHTML = htmlString.replace(new RegExp('<br>', 'g'), '\n');
   }
   else {
@@ -47,6 +47,10 @@ HTMLToAttrs.prototype.getAttrs = function () {
     }
   }
   return this.processTags();
+};
+
+HTMLToAttrs.prototype.getText = function () {
+  return this.domEl.innerText;
 };
 
 HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
@@ -111,5 +115,8 @@ HTMLToAttrs.prototype.processTags = function () {
 
 module.exports = function (htmlString, options) {
   var htmlAttrs = new HTMLToAttrs(htmlString, options);
-  return htmlAttrs.getAttrs();
+  return {
+    text: htmlAttrs.getText(),
+    attrs: htmlAttrs.getAttrs()
+  };
 };
