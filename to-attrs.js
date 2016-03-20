@@ -113,8 +113,12 @@ HTMLToAttrs.prototype.processTags = function () {
 
 module.exports = function (htmlString, options) {
   var htmlAttrs = new HTMLToAttrs(htmlString, options);
+  var attrs = htmlAttrs.getAttrs();
+  if (attrs.length === 0) {
+    attrs = undefined;
+  }
   return {
     text: htmlAttrs.getText(),
-    attrs: htmlAttrs.getAttrs()
+    attrs: attrs
   };
 };

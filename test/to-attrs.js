@@ -10,8 +10,7 @@ var arrayIt = function (testCase) {
     if (testCase.options && testCase.options.toAttrs) {
       options = testCase.options.toAttrs;
       options.proxyDocument = jsdomDocument;
-    }
-    else {
+    } else {
       options = {proxyDocument: jsdomDocument};
     }
     var textAttrs = toAttrs(testCase.html, options);
@@ -19,10 +18,14 @@ var arrayIt = function (testCase) {
     if (textAttrs.text) {
       expect(textAttrs.text).to.equal(testCase.text);
     }
-    if (attrs.length !== testCase.attrs.length) {
-      expect(attrs).to.deep.equal(testCase.attrs);
+    if (attrs && testCase.attrs) {
+      if (attrs.length !== testCase.attrs.length) {
+        expect(attrs).to.deep.equal(testCase.attrs);
+      }
+    } else {
+      expect(attrs).to.equal(testCase.attrs);
     }
-    testCase.attrs.forEach(function (testAttr) {
+    (testCase.attrs || []).forEach(function (testAttr) {
       var found = false;
       attrs.forEach(function (attr) {
         if (JSON.stringify(testAttr) === JSON.stringify(attr)) {

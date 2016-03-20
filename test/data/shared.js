@@ -2,12 +2,12 @@ module.exports = [{
   test: 'empty text,attributes',
   html: '',
   title: '',
-  attrs: []
+  attrs: undefined
 }, {
   test: 'empty attributes',
   html: 'abcdefghijklmnopqrstuvwxyz0123456789',
   title: 'abcdefghijklmnopqrstuvwxyz0123456789',
-  attrs: []
+  attrs: undefined
 }, {
   test: 'single HeadlineSpan tag',
   html: '<h3>a</h3>bcdefghijklmnopqrstuvwxyz0123456789',
@@ -21,7 +21,7 @@ module.exports = [{
   test: 'encodes-decodes HTML',
   html: 'abcd&lt;efgh&gt;ijk&amp;lmno&quot;pqr&quot;stuvwxyz01&apos;23456789',
   title: 'abcd<efgh>ijk&lmno"pqr"stuvwxyz01\'23456789',
-  attrs: []
+  attrs: undefined
 }, {
   test: 'single BoldSpan tag',
   html: '<strong>a</strong>bcdefghijklmnopqrstuvwxyz0123456789',
@@ -280,7 +280,7 @@ module.exports = [{
   test: 'new lines',
   html: "abcdefghijklmno\npqrstuvwxyz0123456789",
   title: 'abcdefghijklmno\npqrstuvwxyz0123456789',
-  attrs: []
+  attrs: undefined
 }, {
   test: 'new lines with elem',
   html: 'abcdefghijklmn<del>o\npq</del>rstuvwxyz0123456789',
@@ -315,7 +315,7 @@ module.exports = [{
   test: 'removes unknown <tags>',
   html: 'asdfasdf&lt;ul&gt;asdf&lt;/ul&gt;asdfr',
   title: 'asdfasdf<ul>asdf</ul>asdfr',
-  attrs: []
+  attrs: undefined
 }, {
   test: 'converts newlines to breaklines with option',
   html: '<h3>a</h3>sdfasdf<br><br>asdf<br>asdfasdfr',

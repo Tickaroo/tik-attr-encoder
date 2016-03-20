@@ -10,7 +10,7 @@ function AttrsToHTML(text, attrsArray, options) {
 
   this.inputString = text || '';
   this.outputString = '';
-  this.attrsArray = this._initModifiersArray(attrsArray);
+  this.attrsArray = this._initModifiersArray(attrsArray || []);
   this.options = options || {};
   this.bookmarks = [];
   this.tagLevelStack = [];
