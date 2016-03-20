@@ -1,6 +1,6 @@
 {
   "name": "tik-attributed-text",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Encodes and decodes TikApi::v5 text attributes to HTML",
   "directories": {
     "test": "test"
