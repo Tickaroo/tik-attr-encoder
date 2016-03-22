@@ -41,9 +41,9 @@ module.exports = [{
     end: 1
   }]
 }, {
-  text: "attribute orders unsorted and complicated",
+  test: "attribute orders unsorted and complicated",
   title: "Ultra mega span\nBold, italic, unterstrichen. Und alles durchgestrichen natürlich. Der Text unten natürlich ned",
-  html: "<del><strong>Ultra </strong><em>mega </em><u>span\nB</u></del>old, italic, unterstrichen. Und alles durchgestrichen natürlich. Der Text unten natürlich ned",
+  html: "<del><strong>Ultra </strong></del><em><del>mega </del></em><u><del>span\nB</del></u>old, italic, unterstrichen. Und alles durchgestrichen natürlich. Der Text unten natürlich ned",
   attrs: [{
     "_type": "Tik::ApiModel::Text::UnderlineSpan",
     "start": 11,
@@ -214,21 +214,50 @@ module.exports = [{
     end: 12
   }]
 }, {
-  test: '6 tags with 2 times 3 overlaping tags with one outside',
-  html: '<strong><u><del>abcdefghijk</del></u></strong><del>l</del>mnopqrstuvwxyz0123456789<strong><u><del>abcdefghijk</del></u></strong><del>l</del>',
-  title: "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijkl",
+  test: '6 tags with 2 times 3 overlaping tags with one outside unordered',
+  html: '<u><strong><del>Ultra mega </del></strong></u><del>s</del>pan\nBold, italic, unters<strong><u><del>trichen. Un</del></u></strong><del>d</del> alles durchgestrichen natürlich. Der Text unten natürlich ned',
+  title: "Ultra mega span\nBold, italic, unterstrichen. Und alles durchgestrichen natürlich. Der Text unten natürlich ned",
   attrs: [{
+    _type: "Tik::ApiModel::Text::UnderlineSpan",
+    start: 0,
+    end: 11
+  }, {
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
     end: 11
+  }, {
+    _type: "Tik::ApiModel::Text::BoldSpan",
+    start: 36,
+    end: 47
+  }, {
+    _type: "Tik::ApiModel::Text::UnderlineSpan",
+    start: 36,
+    end: 47
+  }, {
+    _type: "Tik::ApiModel::Text::StrikethroughSpan",
+    start: 0,
+    end: 12
+  }, {
+    _type: "Tik::ApiModel::Text::StrikethroughSpan",
+    start: 36,
+    end: 48
+  }]
+}, {
+  test: '6 tags with 2 times 3 overlaping tags with one outside',
+  html: '<del><u><strong>Ultra mega </strong></u></del><del>s</del>pan\nBold, italic, unters<strong><u><del>trichen. Un</del></u></strong><del>d</del> alles durchgestrichen natürlich. Der Text unten natürlich ned',
+  title: "Ultra mega span\nBold, italic, unterstrichen. Und alles durchgestrichen natürlich. Der Text unten natürlich ned",
+  attrs: [{
+    _type: "Tik::ApiModel::Text::StrikethroughSpan",
+    start: 0,
+    end: 12
   }, {
     _type: "Tik::ApiModel::Text::UnderlineSpan",
     start: 0,
     end: 11
   }, {
-    _type: "Tik::ApiModel::Text::StrikethroughSpan",
+    _type: "Tik::ApiModel::Text::BoldSpan",
     start: 0,
-    end: 12
+    end: 11
   }, {
     _type: "Tik::ApiModel::Text::BoldSpan",
     start: 36,
