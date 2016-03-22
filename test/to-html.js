@@ -6,6 +6,9 @@ var tohtmlData = require('./data/to-html.js');
 describe('toHTML shared', function () {
   sharedData.forEach(function (testCase) {
     it(testCase.test, function () {
+      if (testCase.debug) {
+        debugger
+      }
       expect(toHTML(testCase.title, testCase.attrs, testCase.options && testCase.options.toHTML)).to.equal(testCase.html);
     });
   });
@@ -14,6 +17,9 @@ describe('toHTML shared', function () {
 describe('toHTML only', function () {
   tohtmlData.forEach(function (testCase) {
     it(testCase.test, function () {
+      if (testCase.debug) {
+        debugger
+      }
       expect(toHTML(testCase.title, testCase.attrs, testCase.options && testCase.options.toHTML)).to.equal(testCase.html);
     });
   });

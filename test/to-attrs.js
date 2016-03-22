@@ -13,6 +13,9 @@ var arrayIt = function (testCase) {
     } else {
       options = {proxyDocument: jsdomDocument};
     }
+    if (testCase.debug) {
+      debugger
+    }
     var textAttrs = toAttrs(testCase.html, options);
     var attrs = textAttrs.attrs;
     if (textAttrs.title) {
