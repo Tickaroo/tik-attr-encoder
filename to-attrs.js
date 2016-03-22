@@ -48,7 +48,7 @@ HTMLToAttrs.prototype.getAttrs = function () {
 };
 
 HTMLToAttrs.prototype.getText = function () {
-  return this.domEl.innerText;
+  return this.domEl.innerText || this.domEl.textContent;
 };
 
 HTMLToAttrs.prototype._processNodes = function (childNodesOrEl) {
