@@ -15,8 +15,8 @@ var arrayIt = function (testCase) {
     }
     var textAttrs = toAttrs(testCase.html, options);
     var attrs = textAttrs.attrs;
-    if (textAttrs.text) {
-      expect(textAttrs.text).to.equal(testCase.text);
+    if (textAttrs.title) {
+      expect(textAttrs.text).to.equal(testCase.title);
     }
     if (attrs && testCase.attrs) {
       if (attrs.length !== testCase.attrs.length) {
