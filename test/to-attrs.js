@@ -14,7 +14,7 @@ var arrayIt = function (testCase) {
       options = {proxyDocument: jsdomDocument};
     }
     if (testCase.debug) {
-      debugger
+      // debugger;
     }
     var textAttrs = toAttrs(testCase.html, options);
     var attrs = textAttrs.attrs;
