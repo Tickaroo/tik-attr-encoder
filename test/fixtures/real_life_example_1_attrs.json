@@ -1,0 +1,13 @@
+[{
+  "_type": "Tik::ApiModel::Text::RefSpan",
+  "start": 54,
+  "end": 63,
+  "ref": {
+    "_type": "Tik::ApiModel::UrlRef",
+    "url": "http://laendlekicker.vol.at"
+  }
+}, {
+  "_type": "Tik::ApiModel::Text::BoldSpan",
+  "start": 54,
+  "end": 63
+}]

@@ -34,4 +34,14 @@ module.exports = [{
     start: 21,
     end: 44
   }]
+}, {
+  test: 'real life example 1',
+  html: 'Für das kommende.<br><br>Das letzte Schwarzach-Spiel endete <a href="http://laendlekicker.vol.at"><strong>0:2 (0:2)</strong></a> 11. Juni. <br><br>',
+  title: "Für das kommende.\n\nDas letzte Schwarzach-Spiel endete 0:2 (0:2) 11. Juni. \n\n",
+  attrs: require('../fixtures/real_life_example_1_attrs.json'),
+  options: {
+    toHTML: {
+      replaceNewLinesWithBrTag: true
+    }
+  }
 }];
