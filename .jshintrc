@@ -3,5 +3,6 @@
   "unused": true,
   "mocha": true,
   "node": true,
+  "latedef": true,
   "predef": [ "window", "document" ]
 }
